@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Still Light — Post-Stress Trauma Center</title>
+<meta name="description" content="A spatial concept for a post-stress trauma center, read as a sequence: darkness, beam, steam, daylight.">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preload" as="image" href="images/stage-1/hero-darkness.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/stage-2/hero-cherry-tree.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/stage-4/hero-japanese-tea-room.jpg">
+</head>
+<body>
+
+<a class="skip-link" href="#stage-1-darkness">Skip to the sequence</a>
+
+<!-- ══ fixed environment ══════════════════════════════════════════════ -->
+<div class="backdrop" id="backdrop" aria-hidden="true">
+
+  <!-- Stage 1 — total darkness, one narrow beam -->
+  <div class="backdrop__layer" data-layer="1">
+    <img class="backdrop__img" src="images/stage-1/hero-darkness.jpg" alt="">
+    <div class="beam beam--narrow"><span class="beam__core"></span></div>
+    <div class="backdrop__vignette"></div>
+  </div>
+
+  <!-- Stage 2 — the cherry tree under a vertical shaft -->
+  <div class="backdrop__layer" data-layer="2">
+    <img class="backdrop__img" src="images/stage-2/hero-cherry-tree.jpg" alt="">
+    <div class="beam beam--wide"><span class="beam__core"></span></div>
+    <div class="backdrop__vignette backdrop__vignette--soft"></div>
+  </div>
+
+  <!-- Stage 3 — steam, heat, loss of sight -->
+  <div class="backdrop__layer" data-layer="3">
+    <img class="backdrop__img" src="images/stage-3/hero-sauna-steam.jpg" alt="">
+    <div class="vapour">
+      <span class="vapour__band vapour__band--a"></span>
+      <span class="vapour__band vapour__band--b"></span>
+      <span class="vapour__band vapour__band--c"></span>
+    </div>
+    <div class="backdrop__vignette backdrop__vignette--steam"></div>
+  </div>
+
+  <!-- Stage 4 — natural daylight, forest, air -->
+  <div class="backdrop__layer" data-layer="4">
+    <img class="backdrop__img" src="images/stage-4/hero-japanese-tea-room.jpg" alt="">
+    <div class="backdrop__vignette backdrop__vignette--day"></div>
+  </div>
+
+  <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+</div>
+
+<!-- ══ quiet interface ═════════════════════════════════════════════════ -->
+<div class="ui" id="ui">
+  <nav class="rail" aria-label="Sequence progress">
+    <ol class="rail__list">
+      <li class="rail__item"><a href="#stage-1-darkness" data-rail="1"><i>I</i><span>darkness</span></a></li>
+      <li class="rail__item"><a href="#stage-2-beam" data-rail="2"><i>II</i><span>beam</span></a></li>
+      <li class="rail__item"><a href="#stage-3-sauna" data-rail="3"><i>III</i><span>steam</span></a></li>
+      <li class="rail__item"><a href="#stage-4-natural-light" data-rail="4"><i>IV</i><span>daylight</span></a></li>
+    </ol>
+    <div class="rail__line"><span class="rail__progress" id="railProgress"></span></div>
+  </nav>
+
+  <div class="controls">
+    <button class="control" id="soundToggle" type="button" aria-pressed="false">
+      <span class="control__dot"></span><span class="control__label">sound</span>
+    </button>
+    <button class="control" id="motionToggle" type="button" aria-pressed="false">
+      <span class="control__dot"></span><span class="control__label">motion</span>
+    </button>
+  </div>
+</div>
+
+<main id="sequence">
+
+  <!-- ══ STAGE 1 ══════════════════════════════════════════════════════ -->
+  <section class="stage stage--1" id="stage-1-darkness" data-stage="1" aria-labelledby="t1">
+    <div class="stage__hero">
+      <div class="stage__head">
+        <p class="stage__index">I — darkness</p>
+        <h1 class="stage__text" id="t1">In the dark, follow the light.</h1>
+      </div>
+      <div class="cue" aria-hidden="true"><span class="cue__line"></span><span class="cue__word">scroll</span></div>
+    </div>
+
+    <div class="board board--1">
+      <figure class="plinth plinth--a" data-parallax="0.18">
+        <img src="images/stage-1/entrance-threshold.jpg" alt="A dark entrance threshold with a thin blade of cold light leaking along the floor." loading="lazy" decoding="async">
+        <figcaption><span class="num">01.1</span> threshold / first contact</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--b" data-parallax="-0.12">
+        <img src="images/stage-1/material-stone.jpg" alt="Dark cast concrete surface lit by raking low light." loading="lazy" decoding="async">
+        <figcaption><span class="num">01.2</span> material / cast concrete</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--c" data-parallax="0.1">
+        <img src="images/stage-1/detail-light-beam.jpg" alt="A narrow blade of cold white light cutting through black air onto rough concrete." loading="lazy" decoding="async">
+        <figcaption><span class="num">01.3</span> light study / aperture</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--d" data-parallax="-0.08">
+        <img src="images/stage-1/beam-diagram.jpg" alt="Line diagram of a chamber section with a single vertical shaft of light." loading="lazy" decoding="async">
+        <figcaption><span class="num">01.4</span> diagram / beam section</figcaption>
+      </figure>
+
+      <figure class="sheet sheet--1" data-parallax="0.22">
+        <img src="images/stage-1/sketch-01.jpg" alt="Hand sketch: an interior with tall openings, yellow shafts of light on a dark floor." loading="lazy" decoding="async">
+        <figcaption><span class="num">sketch 01</span> entry, narrow light</figcaption>
+      </figure>
+
+      <p class="board__note" data-parallax="0.06">The building begins as a condition, not a room.<br>Everything is withheld until the eye can bear it.</p>
+    </div>
+  </section>
+
+  <!-- ══ STAGE 2 ══════════════════════════════════════════════════════ -->
+  <section class="stage stage--2" id="stage-2-beam" data-stage="2" aria-labelledby="t2">
+    <div class="stage__hero">
+      <div class="stage__head">
+        <p class="stage__index">II — beam</p>
+        <h2 class="stage__text" id="t2">Blink, follow the light.</h2>
+      </div>
+    </div>
+
+    <div class="board board--2">
+      <figure class="plinth plinth--e" data-parallax="0.16">
+        <img src="images/stage-2/tree-close-up.jpg" alt="Close-up of a cherry blossom cluster lit from above against black." loading="lazy" decoding="async">
+        <figcaption><span class="num">02.1</span> detail / blossom cluster</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--f" data-parallax="-0.14">
+        <img src="images/stage-2/stair-detail.jpg" alt="A concrete stair curving through near darkness, one step catching a dim highlight." loading="lazy" decoding="async">
+        <figcaption><span class="num">02.2</span> detail / stair around the tree</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--g" data-parallax="0.09">
+        <img src="images/stage-2/ceiling-opening.jpg" alt="A rectangular ceiling aperture with a column of cold light falling through it." loading="lazy" decoding="async">
+        <figcaption><span class="num">02.3</span> detail / ceiling aperture</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--h" data-parallax="-0.07">
+        <img src="images/stage-2/petal-study.jpg" alt="Cherry petals and dust suspended in a shaft of light against black." loading="lazy" decoding="async">
+        <figcaption><span class="num">02.4</span> particles / petals &amp; dust</figcaption>
+      </figure>
+
+      <figure class="sheet sheet--2" data-parallax="0.2">
+        <img src="images/stage-2/sketch-02.jpg" alt="Hand sketch in two panels: yellow light beams on a dark wall, and a pink tree under a spotlight in a black void." loading="lazy" decoding="async">
+        <figcaption><span class="num">sketch 02</span> tree, central beam, stair</figcaption>
+      </figure>
+
+      <figure class="sequence" data-parallax="0.05">
+        <div class="sequence__row">
+          <img src="images/stage-1/hero-darkness.jpg" alt="The black void with a single shaft of light." loading="lazy" decoding="async">
+          <img src="images/stage-1/detail-light-beam.jpg" alt="The blade of light in close-up." loading="lazy" decoding="async">
+          <img src="images/stage-2/tree-close-up.jpg" alt="The blossom cluster at the centre of the beam." loading="lazy" decoding="async">
+        </div>
+        <figcaption><span class="num">sequence</span> darkness → beam → tree</figcaption>
+      </figure>
+
+      <p class="board__note" data-parallax="0.06">One living thing is given the light.<br>The rest of the building remains in the dark.</p>
+    </div>
+  </section>
+
+  <!-- ══ STAGE 3 ══════════════════════════════════════════════════════ -->
+  <section class="stage stage--3" id="stage-3-sauna" data-stage="3" aria-labelledby="t3">
+    <div class="stage__hero">
+      <div class="stage__head">
+        <p class="stage__index">III — steam</p>
+        <h2 class="stage__text" id="t3">Blur. Steam. Continue.</h2>
+      </div>
+    </div>
+
+    <div class="board board--3">
+      <figure class="plinth plinth--i" data-parallax="0.15">
+        <img src="images/stage-3/wood-texture.jpg" alt="Wet dark cedar boards with condensation catching dim warm light." loading="lazy" decoding="async">
+        <figcaption><span class="num">03.1</span> material / wet cedar</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--j" data-parallax="-0.13">
+        <img src="images/stage-3/stone-surface.jpg" alt="Wet stone floor with a thin water film and low steam." loading="lazy" decoding="async">
+        <figcaption><span class="num">03.2</span> material / wet stone</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--k" data-parallax="0.11">
+        <img src="images/stage-3/steam-diffusion.jpg" alt="Layered fog banks catching a faint warm light in a dark corridor." loading="lazy" decoding="async">
+        <figcaption><span class="num">03.3</span> study / vapour diffusion</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--l" data-parallax="-0.09">
+        <img src="images/stage-3/blurred-exit.jpg" alt="A pale rectangle of daylight heavily diffused through steam." loading="lazy" decoding="async">
+        <figcaption><span class="num">03.4</span> detail / exit, unresolved</figcaption>
+      </figure>
+
+      <figure class="sequence sequence--wide" data-parallax="0.04">
+        <div class="sequence__row sequence__row--two">
+          <img src="images/stage-3/transition-dark-to-gray.jpg" alt="A black chamber dissolving into grey steam." loading="lazy" decoding="async">
+          <img src="images/stage-3/hero-sauna-steam.jpg" alt="The steam-filled sauna with warm light and low visibility." loading="lazy" decoding="async">
+        </div>
+        <figcaption><span class="num">sequence</span> black → grey → heat</figcaption>
+      </figure>
+
+      <p class="board__note" data-parallax="0.05">Sight is taken away on purpose.<br>What remains is breath, temperature, weight.</p>
+    </div>
+  </section>
+
+  <!-- ══ STAGE 4 ══════════════════════════════════════════════════════ -->
+  <section class="stage stage--4" id="stage-4-natural-light" data-stage="4" aria-labelledby="t4">
+    <div class="stage__hero">
+      <div class="stage__head">
+        <p class="stage__index">IV — daylight</p>
+        <h2 class="stage__text" id="t4">Open your eyes to natural light.</h2>
+      </div>
+    </div>
+
+    <div class="board board--4">
+      <figure class="plinth plinth--m" data-parallax="0.14">
+        <img src="images/stage-4/shoji-detail.jpg" alt="A paper screen with the shadow of a bare branch cast across it." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.1</span> detail / paper screen</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--n" data-parallax="-0.12">
+        <img src="images/stage-4/tatami-floor.jpg" alt="Tatami meeting a cedar threshold in raking daylight." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.2</span> material / tatami &amp; cedar</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--o" data-parallax="0.08">
+        <img src="images/stage-4/tea-setting.jpg" alt="A dark ceramic tea bowl on tatami in soft window light." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.3</span> detail / tea preparation</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--p" data-parallax="-0.06">
+        <img src="images/stage-4/forest-view.jpg" alt="Fir trees on a mountain slope receding into pale mist." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.4</span> view / fir forest</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--q plinth--panorama" data-parallax="0.03">
+        <img src="images/stage-4/mountain-view.jpg" alt="A wide view of forested ridges fading into bright haze." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.5</span> view / mountain air</figcaption>
+      </figure>
+
+      <figure class="plinth plinth--r" data-parallax="-0.05">
+        <img src="images/stage-4/section-diagram.jpg" alt="A hairline architectural section through the four stages of the project." loading="lazy" decoding="async">
+        <figcaption><span class="num">04.6</span> diagram / project section</figcaption>
+      </figure>
+
+      <p class="board__note board__note--day" data-parallax="0.04">
+        <span class="board__note-title">Still Light</span>
+        A post-stress trauma center, read as one continuous threshold<br>
+        from darkness, through breath, into daylight.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
